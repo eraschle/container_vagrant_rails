@@ -1,0 +1,19 @@
+### Allgemeine Plugins
+## Vagrant ENV Plugin
+# -----------------------------------------------------------------------------------------
+- Beschreibung    Ermoeglicht ENV-Variablen in einer Datei
+- GIT-Repo        https://github.com/gosuri/vagrant-env
+- Console         vagrant plugin install vagrant-env
+
+## Vagrant Trigger Plugin
+# -----------------------------------------------------------------------------------------
+- Beschreibung    Aktion Vor oder Nach einem vagrant Befehl (up, halt, ...)
+- GIT-Repo        https://github.com/emyl/vagrant-triggers.git
+- Console         vagrant plugin install vagrant-triggers
+
+### Virtual-Box
+## Vagrant-vbguest
+# -----------------------------------------------------------------------------------------
+- Beschreibung    Automatische Installation VirtualBox-Guest-Additions 
+- GIT-Repo        https://github.com/dotless-de/vagrant-vbguest
+- Console         vagrant plugin install vagrant-vbguest
