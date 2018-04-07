@@ -27,5 +27,24 @@ cd $APP_DIR
 rbenv local $RUBY_VERSION
 echo "*** 'Local Ruby-Version '$RUBY_VERSION' '$APP_DIR'"
 
-gem install bundler
+## Gems zum Programmieren, Debugen, Testen installieren, 
+## sofern diese nicht bereits für RUBY_VERSION installiert worden ist
+# Needed gems
+GEMPATH=$HOME/.rbenv/versions/$RUBY_VERSION/lib/ruby/gems/$RUBY_VERSION/gems
+if [ $(find $GEMPATH -name 'bundler*' -mmin -5 | wc -l) -eq 0 ]; then
+  echo "*** 'Install bundler and rails"
+  gem install bundler rails --no-ri
+fi
+
+# Debug-Gems
+if [ $(find $GEMPATH -name 'rubocop*' -mmin -5 | wc -l) -eq 0 ]; then
+  echo "*** 'Install gems for debuging"
+  gem install rubocop:0.52.0 debase ruby-debug-ide --no-ri
+fi
+
+# Testing-Gems
+  echo "*** 'Install gems for testing"
+if [ $(find $GEMPATH -name 'ZenTest*' -mmin -5 | wc -l) -eq 0 ]; then
+  gem install ZenTest rspec rspec-rails --no-ri
+fi
 rbenv rehash
