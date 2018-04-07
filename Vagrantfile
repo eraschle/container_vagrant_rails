@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # Script-Variablen
-VM_NAME    = 'RoR Dev on Vagrant'
+VM_NAME    = 'Rails on Vagrant'
 DB_VERSION = '5.7'
 DB_HOST    = 'localhost'
 DB_PORT    = '3306'
@@ -17,6 +17,8 @@ Vagrant.configure("2") do |config|
   config.vm.provider "hyperv" do |hv|
     hv.memory = 2048
     hv.cpus = 2
+    # Ggf MAC-Adresse in die ENV-Datei aufnehmen
+    hv.mac = "00:15:5d:01:0c:12"
     hv.enable_virtualization_extensions = true
     hv.differencing_disk = true
     hv.vmname = VM_NAME
@@ -24,12 +26,12 @@ Vagrant.configure("2") do |config|
 
   # Rails Server Port im Host erreichbar machen
   config.vm.network "forwarded_port", guest: 3000, host: 3000, auto_correct: true
+  # config.vm.network "public_network"
 
   # Mounten des Standard-Ordner deaktivieren
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   # Synchronisation und Mounten des App-Ordners erstellen
-  # TODO >> rsync-Einstellung fuer @HOME-DEV-PC
   config.vm.synced_folder ENV['HOST_DIR'], ENV['GUEST_DIR'], disabled: false, create: true,
     type: "smb", smb_username: ENV['USERNAME'], smb_password: ENV['PC_USER_PW'],
     mount_options: [ "vers=3.0" ]
