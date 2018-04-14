@@ -36,4 +36,8 @@ if [ -d $APP_DIR/config ]; then
     <<: *default
     database: $TEST_DB
 EOF
+  echo "** DATABASE.YML erstellt"
+else
+  echo "** Ordner $APP_DIR/config existiert nicht"
+  echo "*** DATABASE.YML NICHT erstellt"
 fi
